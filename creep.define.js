@@ -167,18 +167,22 @@ let DefineCreepBody = {
                 basicBodyParts = [WORK, MOVE, CARRY];
                 basicBodyCost = 200;
                 let myStorage = Game.getObjectById(thisRoom.memory.myStorage);
-                if(myStorage){
-                    if(myStorage.store.energy > 100000){
-                        let n = (myStorage.store.energy - myStorage.store.energy % 100000)/100000;
-                        maxBodyParts = 16*n;
-                        if(maxBodyParts > 50){
-                            maxBodyParts = 50;
+                if(thisRoom.controller.level != 8){
+                    if(myStorage){
+                        if(myStorage.store.energy > 100000){
+                            let n = (myStorage.store.energy - myStorage.store.energy % 100000)/100000;
+                            maxBodyParts = 16*n;
+                            if(maxBodyParts > 50){
+                                maxBodyParts = 50;
+                            }
+                        }else{
+                            maxBodyParts = 18;
                         }
                     }else{
-                        maxBodyParts = 18;
+                        maxBodyParts = 12;
                     }
                 }else{
-                    maxBodyParts = 12;
+                    maxBodyParts = 3;
                 }
                 //maxBodyParts = 42;
                 perc = 0.66;
