@@ -8,6 +8,7 @@ let Harvest = {
             source = c.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             if(source){
                 c.memory.mySource = source.id;
+                //jijiji
             }
         }else{
             source = Game.getObjectById(c.memory.mySource);
