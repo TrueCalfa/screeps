@@ -6,7 +6,9 @@ let Harvest = {
         let source;
         if(!c.memory.mySource && c.memory.mySource != 0){
             source = c.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            c.memory.mySource = source.id;
+            if(source){
+                c.memory.mySource = source.id;
+            }
         }else{
             source = Game.getObjectById(c.memory.mySource);
             let harvestResult;
