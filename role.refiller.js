@@ -84,8 +84,10 @@ let roleRefiller = {
                                 if(creep.room.memory.sourceContainers){
                                     for(let i in creep.room.memory.sourceContainers){
                                         let thisContainer = Game.getObjectById(creep.room.memory.sourceContainers[i][0]);
-                                        if(_.sum(thisContainer.store) > (creep.carryCapacity-creep.carry.energy)){
-                                            myContainers.push(thisContainer);
+                                        if(thisContainer){
+                                            if(_.sum(thisContainer.store) > (creep.carryCapacity-creep.carry.energy)){
+                                                myContainers.push(thisContainer);
+                                            }
                                         }
                                     }
                                 }
