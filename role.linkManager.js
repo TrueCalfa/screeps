@@ -28,8 +28,10 @@ let LinkManager = {
                                 let validContainers = [];
                                 for (let i in myContainers){
                                     let thisContainer = Game.getObjectById(myContainers[i][0]);
-                                    if(thisContainer.store.energy > (creep.carryCapacity - _.sum(creep.carry))){
-                                        validContainers.push(thisContainer);
+                                    if(thisContainer){
+                                        if(thisContainer.store.energy > (creep.carryCapacity - _.sum(creep.carry))){
+                                            validContainers.push(thisContainer);
+                                        }
                                     }
                                 }
                                 if(validContainers && validContainers.length > 0){
