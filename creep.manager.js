@@ -75,8 +75,10 @@ let manageCreeps = {
                     if(c.hits == c.hitsMax){
                         //this.ResetTower(c);
                         if(!c.room.memory.constructionSites || c.room.memory.constructionSites.length == 0){
-                            if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) && (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
-                                roleUpgrader.run(c);
+                            if(!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) && (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
+                                if(c.room.controller.level != 8){
+                                    roleUpgrader.run(c);
+                                }
                             }else{
                                 roleRepairer.run(c);
                             }
