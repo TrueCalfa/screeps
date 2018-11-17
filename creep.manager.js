@@ -93,7 +93,7 @@ let manageCreeps = {
                         if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) &&
                         (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
                             roleUpgrader.run(c);
-                        }else{
+                        }else if(c.room.controller.level != 8){
                             c.memory.inPosition = false;
                             roleRepairer.run(c);
                         }
