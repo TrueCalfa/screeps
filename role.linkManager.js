@@ -61,7 +61,7 @@ let LinkManager = {
                     if(creep.carry.energy > 0){
                         if(!creep.memory.unloadTo || creep.memory.unloadTo == 0){
                             let myStorage = Game.getObjectById(creep.room.memory.myStorage);
-                            if(myStorage){
+                            if(myStorage && _.sum(myStorage.store) < myStorage.storeCapacity){
                                 if(myStorage.store.energy > 10000){
 
                                     let myContainer = Game.getObjectById(creep.room.memory.myUpgradersContainer);
@@ -79,13 +79,23 @@ let LinkManager = {
                                     creep.memory.unloadTo = myStorage.id;
                                 }
                             }else{
-                                let myContainer = Game.getObjectById(creep.room.memory.myUpgradersContainer);
-                                if(myContainer && myContainer.storeCapacity > _.sum(myContainer.store)){
-                                    creep.memory.unloadTo = myContainer.id;
-                                }else{
-                                    creep.memory.unloadTo = 0;
-                                    unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns']);
-                                
+                                let towers = creep.room.memory.towers;
+                                for(let i in towers){
+                                    let thisTower = Game.getObjectById(towers[i]);
+                                    if(thisTower.energy < thisTower.energyCapacity * 0.9){
+                                        creep.memory.unloadTo = thisTower;
+                                        break;
+                                    }
+                                }
+                                if(creep.memory.unloadTo == 0){
+                                    let myContainer = Game.getObjectById(creep.room.memory.myUpgradersContainer);
+                                    if(myContainer && myContainer.storeCapacity > _.sum(myContainer.store)){
+                                        creep.memory.unloadTo = myContainer.id;
+                                    }else{
+                                        creep.memory.unloadTo = 0;
+                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns']);
+
+                                    }
                                 }
                             }
                         }else{
