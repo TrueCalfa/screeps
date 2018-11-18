@@ -53,12 +53,26 @@ let setMemory = {
         let myUpgradersContainer;
         let myStorage;
         let myTerminal;
-        let rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
+        let rampartsMaxHP = 0;
+        let initialRampartsMaxHP = 0;
+        if(thisRoom.controller.level != 8){
+             rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
+        }else{
+            if(!thisRoom.memory.otherDamagedStructuresMaxHP){
+                thisRoom.memory.otherDamagedStructuresMaxHP = 0;
+                thisRoom.memory.initialRampartRepairGameTime = Game.time;
+            }else{
+                thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
+                rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
+            }
+        }
+        
         let wallsMaxHP = this.SetWallsMaxHP(thisRoom);
         myStructures = thisRoom.find(FIND_STRUCTURES);
         for(let i in myStructures){
             let s = myStructures[i];
-            if((s.structureType == STRUCTURE_RAMPART && s.hits < rampartsMaxHP) || (s.structureType == STRUCTURE_WALL && s.hits < wallsMaxHP)){
+            if((s.structureType == STRUCTURE_RAMPART && s.hits < rampartsMaxHP) ||
+            (s.structureType == STRUCTURE_WALL && s.hits < wallsMaxHP)){
                 otherDamagedStructures.push(s.id);
             }else if(s.structureType != STRUCTURE_RAMPART && s.structureType != STRUCTURE_WALL && s.structureType && s.hits < s.hitsMax){
                 damagedStructures.push(s.id);
