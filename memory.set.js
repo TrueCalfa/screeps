@@ -56,12 +56,11 @@ let setMemory = {
         let rampartsMaxHP = 0;
         let initialRampartsMaxHP = 0;
         if(thisRoom.controller && thisRoom.controller.my){
-            console.log(thisRoom.name, " - ",thisRoom.controller.level);
             if(thisRoom.controller.level != 8){
                  rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
             }else{
                 if(!thisRoom.memory.otherDamagedStructuresMaxHP){
-                    thisRoom.memory.otherDamagedStructuresMaxHP = 0;
+                    thisRoom.memory.otherDamagedStructuresMaxHP = 1;
                     thisRoom.memory.initialRampartRepairGameTime = Game.time;
                 }else{
                     thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
