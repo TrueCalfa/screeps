@@ -65,7 +65,6 @@ let setMemory = {
                 }else{
                     thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
                     rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
-                    console.log(thisRoom.name, " - ",rampartsMaxHP);
                 }
             }
         }
