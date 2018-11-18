@@ -27,13 +27,15 @@ var towerRepair = {
                 }
             }
             if(target == 0){
-                
-                otherDamagedStructures = tower.room.memory.otherDamagedStructures;
-                
-                for(let i in otherDamagedStructures){
-                    if(tower.pos.getRangeTo(Game.getObjectById(otherDamagedStructures[i])) < TOWER_MAX_REPAIR_DIST){
-                            target = Game.getObjectById(otherDamagedStructures[i]);
-                            break;
+                //Level 8 towers won't repair walls and ramparts
+                if(tower.room.controller.level != 8){
+                    otherDamagedStructures = tower.room.memory.otherDamagedStructures;
+
+                    for(let i in otherDamagedStructures){
+                        if(tower.pos.getRangeTo(Game.getObjectById(otherDamagedStructures[i])) < TOWER_MAX_REPAIR_DIST){
+                                target = Game.getObjectById(otherDamagedStructures[i]);
+                                break;
+                        }
                     }
                 }
                 
