@@ -37,7 +37,10 @@ let eachFive = {
                     if(null == thisRoom.memory.desiredExtractors){      thisRoom.memory.desiredExtractors = DESIRED_EXTRACTORS  }
                 }else{
                     //Quiero tantos mineros como sourceContainers
-                    let expectedMiners = thisRoom.memory.sourceContainers.length;
+                    let expectedMiners = 0;
+                    if(thisRoom.memory.sourceContainers){
+                        expectedMiners = thisRoom.memory.sourceContainers.length;
+                    }
                     //Si quiero mineros
                     if(expectedMiners > 0){
                         let myStorage = Game.getObjectById(thisRoom.memory.myStorage);
