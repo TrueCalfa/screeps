@@ -37,8 +37,16 @@ var towerRepair = {
                                 break;
                         }
                     }
+                }else if(tower.id == tower.room.memory.towers[0]){
+                    otherDamagedStructures = tower.room.memory.otherDamagedStructures;
+
+                    for(let i in otherDamagedStructures){
+                        if(tower.pos.getRangeTo(Game.getObjectById(otherDamagedStructures[i])) < TOWER_MAX_REPAIR_DIST){
+                                target = Game.getObjectById(otherDamagedStructures[i]);
+                                break;
+                        }
+                    }
                 }
-                
             }
             
             //No puedo poner un else porque al principio de cada tick target == 0
