@@ -37,7 +37,7 @@ var towerRepair = {
                                 break;
                         }
                     }
-                }else if(tower.id == tower.room.memory.towers[0]){
+                }else{//if(tower.id == tower.room.memory.towers[0]){
                     otherDamagedStructures = tower.room.memory.otherDamagedStructures;
 
                     for(let i in otherDamagedStructures){
