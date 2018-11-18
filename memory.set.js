@@ -55,18 +55,19 @@ let setMemory = {
         let myTerminal;
         let rampartsMaxHP = 0;
         let initialRampartsMaxHP = 0;
-        if(thisRoom.controller.level != 8){
-             rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
-        }else{
-            if(!thisRoom.memory.otherDamagedStructuresMaxHP){
-                thisRoom.memory.otherDamagedStructuresMaxHP = 0;
-                thisRoom.memory.initialRampartRepairGameTime = Game.time;
+        if(thisRoom.controller && thisRoom.controller.my){
+            if(thisRoom.controller.level != 8){
+                 rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
             }else{
-                thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
-                rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
+                if(!thisRoom.memory.otherDamagedStructuresMaxHP){
+                    thisRoom.memory.otherDamagedStructuresMaxHP = 0;
+                    thisRoom.memory.initialRampartRepairGameTime = Game.time;
+                }else{
+                    thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
+                    rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
+                }
             }
         }
-        
         let wallsMaxHP = this.SetWallsMaxHP(thisRoom);
         myStructures = thisRoom.find(FIND_STRUCTURES);
         for(let i in myStructures){
