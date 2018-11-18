@@ -56,6 +56,7 @@ let setMemory = {
         let rampartsMaxHP = 0;
         let initialRampartsMaxHP = 0;
         if(thisRoom.controller && thisRoom.controller.my){
+            console.log(thisRoom.name, " - ",thisRoom.controller.level);
             if(thisRoom.controller.level != 8){
                  rampartsMaxHP = this.SetRampartsMaxHP(thisRoom);
             }else{
