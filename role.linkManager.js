@@ -61,7 +61,7 @@ let LinkManager = {
                     if(creep.carry.energy > 0){
                         if(!creep.memory.unloadTo || creep.memory.unloadTo == 0){
                             let myStorage = Game.getObjectById(creep.room.memory.myStorage);
-                            if(myStorage && _.sum(myStorage.store) < myStorage.storeCapacity){
+                            if(myStorage && _.sum(myStorage.store) < myStorage.storeCapacity * 0.9){
                                 if(myStorage.store.energy > 10000){
 
                                     let myContainer = Game.getObjectById(creep.room.memory.myUpgradersContainer);
@@ -71,8 +71,8 @@ let LinkManager = {
                                         if(myStorage.store.energy != myStorage.storeCapacity){
                                             creep.memory.unloadTo = myStorage.id;
                                         }else{
-                                            creep.memory.unloadTo = 0;
-                                            unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns']);
+                                            //creep.memory.unloadTo = 0;
+                                            unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns', 'terminals']);
                                         }
                                     }
                                 }else{
@@ -93,7 +93,7 @@ let LinkManager = {
                                         creep.memory.unloadTo = myContainer.id;
                                     }else{
                                         //creep.memory.unloadTo = 0;
-                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns','terminals']);
+                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns']);
 
                                     }
                                 }
