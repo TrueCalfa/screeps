@@ -162,7 +162,7 @@ let setMemory = {
                     return 500000;
                 break;
                 case 8:
-                    return 500000;
+                    return 1000000;
                 break;
             }
         }   
