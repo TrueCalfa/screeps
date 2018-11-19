@@ -43,7 +43,9 @@ module.exports = {
                     if (orders[0].price >= 0.005) {
                       let result = Game.market.deal(orders[0].id, 1000, myTerminal.room.name);
                       if (result == 0) {
-                          console.log("Sold Energy successfully");
+                          //console.log("Sold Energy successfully");
+                      }else{
+                          console.log("Something went wrong with selling energy");
                       }
 
                     }
