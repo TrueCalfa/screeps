@@ -63,8 +63,12 @@ let setMemory = {
                     thisRoom.memory.otherDamagedStructuresMaxHP = 1;
                     thisRoom.memory.initialRampartRepairGameTime = Game.time;
                 }else{
-                    thisRoom.memory.otherDamagedStructuresMaxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
-                    rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
+                    let maxHP = Game.time - thisRoom.memory.initialRampartRepairGameTime;
+                    if(maxHP > MAX_RAMPARTS_HP){
+                        thisRoom.memory.otherDamagedStructuresMaxHP = MAX_RAMPARTS_HP;
+                    }else{
+                        thisRoom.memory.otherDamagedStructuresMaxHP = maxHP;
+                    }
                 }
             }
         }
