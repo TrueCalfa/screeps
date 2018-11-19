@@ -83,7 +83,7 @@ let LinkManager = {
                                 for(let i in towers){
                                     let thisTower = Game.getObjectById(towers[i]);
                                     if(thisTower.energy < thisTower.energyCapacity * 0.9){
-                                        creep.memory.unloadTo = thisTower;
+                                        creep.memory.unloadTo = thisTower.id;
                                         break;
                                     }
                                 }
