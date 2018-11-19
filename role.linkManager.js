@@ -95,8 +95,9 @@ let LinkManager = {
                                     if(myContainer && myContainer.storeCapacity > _.sum(myContainer.store)){
                                         creep.memory.unloadTo = myContainer.id;
                                     }else{
+                                        creep.memory.unloadTo = creep.room.memory.terminal;
                                         //creep.memory.unloadTo = 0;
-                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns','terminals']);
+                                        //unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns','terminals']);
 
                                     }
                                 }
