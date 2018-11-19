@@ -93,7 +93,7 @@ let LinkManager = {
                                         creep.memory.unloadTo = myContainer.id;
                                     }else{
                                         creep.memory.unloadTo = 0;
-                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns']);
+                                        unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns','terminals']);
 
                                     }
                                 }
