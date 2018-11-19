@@ -13,10 +13,10 @@ let roomManager = {
         CountCreeps.run(thisRoom);
 
         LinkManager.run(thisRoom);
-        //if(Game.time%5 == 0){
+        if(Game.time%5 == 0){
             //TerminalManager.SellMinerals(thisRoom);
-            //TerminalManager.BuyEnergy(thisRoom);
-        //}
+            TerminalManager.SellEnergy(thisRoom);
+        }
 
         //Esto hara que si un spawn esta cagando un bicho, la thisRoom.memory.isSapwning == true
         //if(thisRoom.memory.isSpawning == true){
