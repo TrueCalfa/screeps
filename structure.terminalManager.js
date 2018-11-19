@@ -29,7 +29,7 @@ module.exports = {
     SellEnergy: function(thisRoom){
         let terminal = thisRoom.memory.terminal;
         let myTerminal = Game.getObjectById(terminal);
-        if (myTerminal) {
+        if (myTerminal && myTerminal.isActive) {
             //let myResource = this.SetResource(myTerminal);
             if ((myTerminal.store.energy) >= 10000) {
                 var orders = Game.market.getAllOrders(order => 
