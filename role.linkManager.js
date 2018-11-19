@@ -68,7 +68,7 @@ let LinkManager = {
                                     if(myContainer && (myContainer.storeCapacity - _.sum(myContainer.store)) > creep.carry.energy){
                                         creep.memory.unloadTo = myContainer.id;
                                     }else{
-                                        if(myStorage.store.energy != myStorage.storeCapacity){
+                                        if(_.sum(myStorage.store) < myStorage.storeCapacity){
                                             creep.memory.unloadTo = myStorage.id;
                                         }else{
                                             //creep.memory.unloadTo = 0;
