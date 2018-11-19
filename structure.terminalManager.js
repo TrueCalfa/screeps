@@ -30,7 +30,7 @@ module.exports = {
         let terminal = thisRoom.memory.terminal;
         let myTerminal = Game.getObjectById(terminal);
         if (myTerminal) {
-            let myResource = this.SetResource(myTerminal);
+            //let myResource = this.SetResource(myTerminal);
             if ((myTerminal.store.energy) >= 10000) {
                 var orders = Game.market.getAllOrders(order => 
                     order.resourceType == RESOURCE_ENERGY &&
@@ -40,7 +40,7 @@ module.exports = {
 
                 if(orders.length){
                     //console.log('Best price for terminal on room '+ myTerminal.room.name+' for '+myResource+' was: ' + orders[0].price);
-                    if (orders[0].price >= 0.05) {
+                    if (orders[0].price >= 0.005) {
                       let result = Game.market.deal(orders[0].id, 1000, myTerminal.room.name);
                       if (result == 0) {
                           console.log("Order completed successfully: Sold ",orders[0].amount," for ", orders[0].price, " for a total of ", orders[0].amount*orders[0].price, " credits.");
