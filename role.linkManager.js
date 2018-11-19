@@ -92,7 +92,7 @@ let LinkManager = {
                                     if(myContainer && myContainer.storeCapacity > _.sum(myContainer.store)){
                                         creep.memory.unloadTo = myContainer.id;
                                     }else{
-                                        creep.memory.unloadTo = 0;
+                                        //creep.memory.unloadTo = 0;
                                         unloadResult = UnloadEnergy.run(creep, ['extensions', 'spawns','terminals']);
 
                                     }
