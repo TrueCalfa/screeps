@@ -71,6 +71,7 @@ let setMemory = {
                     }
                 }
             }
+            rampartsMaxHP = thisRoom.memory.otherDamagedStructuresMaxHP;
         }
         let wallsMaxHP = this.SetWallsMaxHP(thisRoom);
         myStructures = thisRoom.find(FIND_STRUCTURES);
