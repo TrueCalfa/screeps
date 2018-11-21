@@ -190,7 +190,7 @@ let eachFive = {
                 //Civilians list is not used, since here i only look for enemies in foreign rooms.
                 let civiliansList = [];
                 for(let i in enemies){
-                    if(enemies[i].getActiveBodyParts(ATTACK) > 0 || enemies[i].getActiveBodyParts(RANGED_ATTACK) > 0){
+                    if(enemies[i].getActiveBodyparts(ATTACK) > 0 || enemies[i].getActiveBodyparts(RANGED_ATTACK) > 0){
                         enemiesList.push(enemies[i].id);
                     }else{
                         civiliansList.push(enemies[i].id);
