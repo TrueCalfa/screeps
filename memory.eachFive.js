@@ -185,15 +185,23 @@ let eachFive = {
                     return (c.owner.username != 'Staps' && c.owner.username != 'Robalian');
                 }
             });
-            let enemiesList = [];
-            for(let i in enemies){
-                enemiesList.push(enemies[i].id);
-            }
             if(enemies && enemies.length >0){
+                let enemiesList = [];
+                //Civilians list is not used, since here i only look for enemies in foreign rooms.
+                let civiliansList = [];
+                for(let i in enemies){
+                    if(enemies[i].getActiveBodyParts(ATTACK) > 0 || enemies[i].getActiveBodyParts(RANGED_ATTACK) > 0){
+                        enemiesList.push(enemies[i].id);
+                    }else{
+                        civiliansList.push(enemies[i].id);
+                    }
+                }
                 thisRoom.memory.enemies = enemiesList;
+                thisRoom.memory.civilians = civiliansList;
                 thisRoom.memory.enemiesDie = Game.time + enemies[0].ticksToLive;
             }else{
                 thisRoom.memory.enemies = [];
+                thisRoom.memory.civilians = [];
             }
         }
     }
