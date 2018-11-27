@@ -30,144 +30,146 @@ let manageCreeps = {
             if(debug){
                 start = Game.cpu.getUsed();
             }
-            switch(c.memory.role){
-                case 'router':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleRouter.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'harvester':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleHarvester.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'miner':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleMiner.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'scavenger':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleScavenger.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'refiller':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleRefiller.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'builder':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        if(!c.room.memory.constructionSites || c.room.memory.constructionSites.length == 0){
-                            if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) && (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
+            if(!c.isSpawning){
+                switch(c.memory.role){
+                    case 'router':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleRouter.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'harvester':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleHarvester.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'miner':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleMiner.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'scavenger':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleScavenger.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'refiller':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleRefiller.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'builder':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            if(!c.room.memory.constructionSites || c.room.memory.constructionSites.length == 0){
+                                if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) && (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
+                                    if(c.room.controller.level != 8){
+                                        roleUpgrader.run(c);
+                                    }
+                                }else{
+                                    roleRepairer.run(c);
+                                }
+                            }else{
+                                roleBuilder.run(c);
+                            }
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'repairer':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) &&
+                            (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
                                 if(c.room.controller.level != 8){
                                     roleUpgrader.run(c);
                                 }
                             }else{
+                                c.memory.inPosition = false;
                                 roleRepairer.run(c);
                             }
                         }else{
-                            roleBuilder.run(c);
+                            this.Flee(c);
                         }
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'repairer':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        if((!c.room.memory.damagedStructures || c.room.memory.damagedStructures.length == 0) &&
-                        (!c.room.memory.otherDamagedStructures || c.room.memory.otherDamagedStructures.length == 0)){
-                            if(c.room.controller.level != 8){
-                                roleUpgrader.run(c);
-                            }
+                    }break;
+                    case 'upgrader':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleUpgrader.run(c);
                         }else{
-                            c.memory.inPosition = false;
-                            roleRepairer.run(c);
+                            this.Flee(c);
                         }
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'upgrader':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleUpgrader.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'linkManager':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleLinkManager.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'flagClaimer':{
-                    roleFlagClaimer.run(c);
-                }break;
-                case 'flagHarvester':{
-                    roleFlagHarvester.run(c);
-                }break;
-                case 'flagBuilder':{
-                    roleFlagBuilder.run(c);
-                }break;
-                case 'flagReserver':{
-                    roleFlagReserver.run(c);
-                }break;
-                case 'flagRepairer':{
-                    roleFlagRepairer.run(c);
-                }break;
-                case 'flagMiner':{
-                    roleFlagMiner.run(c);
-                }break;
-                case 'flagScavenger':{
-                    roleFlagScavenger.run(c);
-                }break;
-                case 'flagAttacker':{
-                    roleFlagAttacker.run(c);
-                }break;
-                case 'flagHealer':{
-                    roleFlagHealer.run(c);
-                }break;
-                case 'baiterPack':{
-                    packBaiter.run(c);
-                }break;
-                case 'flagTowerTest':{
-                    roleFlagTowerTest.run(c);
-                }break;
-                case 'extractor':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleExtractor.run(c);
-                    }else{
-                        this.Flee(c);
-                    }
-                }break;
-                case 'mineralHauler':{
-                    if(c.hits == c.hitsMax){
-                        //this.ResetTower(c);
-                        roleMineralHauler.run(c);
-                    }else{
-                        this.Flee(c);
+                    }break;
+                    case 'linkManager':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleLinkManager.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'flagClaimer':{
+                        roleFlagClaimer.run(c);
+                    }break;
+                    case 'flagHarvester':{
+                        roleFlagHarvester.run(c);
+                    }break;
+                    case 'flagBuilder':{
+                        roleFlagBuilder.run(c);
+                    }break;
+                    case 'flagReserver':{
+                        roleFlagReserver.run(c);
+                    }break;
+                    case 'flagRepairer':{
+                        roleFlagRepairer.run(c);
+                    }break;
+                    case 'flagMiner':{
+                        roleFlagMiner.run(c);
+                    }break;
+                    case 'flagScavenger':{
+                        roleFlagScavenger.run(c);
+                    }break;
+                    case 'flagAttacker':{
+                        roleFlagAttacker.run(c);
+                    }break;
+                    case 'flagHealer':{
+                        roleFlagHealer.run(c);
+                    }break;
+                    case 'baiterPack':{
+                        packBaiter.run(c);
+                    }break;
+                    case 'flagTowerTest':{
+                        roleFlagTowerTest.run(c);
+                    }break;
+                    case 'extractor':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleExtractor.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
+                    }break;
+                    case 'mineralHauler':{
+                        if(c.hits == c.hitsMax){
+                            //this.ResetTower(c);
+                            roleMineralHauler.run(c);
+                        }else{
+                            this.Flee(c);
+                        }
                     }
                 }
             }
